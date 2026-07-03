@@ -1,4 +1,4 @@
-# ComfyUI Execution Completion Sound
+# comfyui-completion-sound-irki
 
 I made this for anyone who missed that ComfyUI had finished because it was too quiet.
 
@@ -16,22 +16,22 @@ ComfyUI의 작업이 끝났는데 너무 조용해서 모르셨던 분들을 위
 
 ## Install
 
-1. Download `comfyui-execution-completion-sound.zip` from the GitHub release or Gumroad product download.
+1. Download `comfyui-completion-sound-irki.zip` from the GitHub release or Gumroad product download.
 2. Extract it into your ComfyUI `custom_nodes` folder.
 3. Confirm the folder path looks like:
 
-   `ComfyUI/custom_nodes/comfyui-execution-completion-sound/`
+   `ComfyUI/custom_nodes/comfyui-completion-sound-irki/`
 
 4. Restart ComfyUI.
 5. Refresh the ComfyUI browser window.
 
 ## 설치 방법
 
-1. GitHub 릴리스 또는 Gumroad 제품 다운로드에서 `comfyui-execution-completion-sound.zip` 파일을 다운로드합니다.
+1. GitHub 릴리스 또는 Gumroad 제품 다운로드에서 `comfyui-completion-sound-irki.zip` 파일을 다운로드합니다.
 2. 압축을 풀어 ComfyUI의 `custom_nodes` 폴더에 넣습니다.
 3. 폴더 경로가 아래처럼 되어 있는지 확인합니다.
 
-   `ComfyUI/custom_nodes/comfyui-execution-completion-sound/`
+   `ComfyUI/custom_nodes/comfyui-completion-sound-irki/`
 
 4. ComfyUI를 재시작합니다.
 5. ComfyUI 브라우저 창을 새로고침합니다.
