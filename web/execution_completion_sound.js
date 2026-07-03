@@ -6,7 +6,6 @@ const VOLUME_SETTING_ID = "Comfy.ExecutionCompletionSound.Volume";
 const TEST_SOUND_SETTING_ID = "Comfy.ExecutionCompletionSound.Test";
 const MIN_PLAY_INTERVAL_MS = 700;
 const COMPLETION_SOUND_URL = new URL("./assets/completion.mp3", import.meta.url).href;
-const OPEN_LOCATION_ROUTE = "/execution-completion-sound/open-file-location";
 
 let audioContext;
 let audioBufferPromise;
@@ -157,70 +156,8 @@ function showToast(severity, summary, detail) {
   });
 }
 
-async function openImageLocation(imageInfo) {
-  if (!imageInfo?.filename) {
-    showToast("warn", "Open folder", "No saved image is available yet.");
-    return;
-  }
-
-  try {
-    const response = await api.fetchApi(OPEN_LOCATION_ROUTE, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        filename: imageInfo.filename,
-        subfolder: imageInfo.subfolder ?? "",
-        type: imageInfo.type ?? "output",
-      }),
-    });
-
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.ok === false) {
-      throw new Error(result.error || `Server returned ${response.status}`);
-    }
-  } catch (error) {
-    console.error("Failed to open image location", error);
-    showToast("error", "Open folder failed", error?.message ?? String(error));
-  }
-}
-
-function ensureOpenLocationWidget(node) {
-  const existing = node.widgets?.find((widget) => widget.name === "open_image_location");
-  if (existing) {
-    return existing;
-  }
-
-  const widget = node.addWidget("button", "Open Folder", "open", () => {
-    openImageLocation(node.__lastSavedImageForOpenLocation);
-  });
-  widget.name = "open_image_location";
-  widget.serialize = false;
-  return widget;
-}
-
 app.registerExtension({
   name: "Comfy.ExecutionCompletionSound",
-  async beforeRegisterNodeDef(nodeType, nodeData) {
-    if (nodeData.name !== "SaveImage") {
-      return;
-    }
-
-    const onExecuted = nodeType.prototype.onExecuted;
-    nodeType.prototype.onExecuted = function (message) {
-      onExecuted?.apply(this, arguments);
-
-      const images = message?.images;
-      if (!Array.isArray(images) || images.length === 0) {
-        return;
-      }
-
-      this.__lastSavedImageForOpenLocation = images[0];
-      ensureOpenLocationWidget(this);
-      this.setSize(this.computeSize());
-    };
-  },
   async setup() {
     app.ui?.settings?.addSetting?.({
       id: ENABLED_SETTING_ID,
