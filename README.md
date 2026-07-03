@@ -5,6 +5,13 @@ A small ComfyUI custom extension for two workflow conveniences:
 - Plays a short sound when a prompt finishes successfully.
 - Adds an `Open Folder` button to `SaveImage` nodes after execution. On Windows, Explorer opens with the saved image selected.
 
+## Korean
+
+ComfyUI 작업 흐름을 조금 더 편하게 만드는 작은 커스텀 확장입니다.
+
+- 프롬프트 실행이 성공적으로 끝나면 짧은 알림음을 재생합니다.
+- `SaveImage` 노드 실행 후 `Open Folder` 버튼을 추가합니다. Windows에서는 저장된 이미지가 선택된 상태로 Explorer가 열립니다.
+
 ## Install
 
 1. Download `comfyui-execution-completion-sound.zip` from the release or product download.
